@@ -72,7 +72,7 @@ You can replace qwen3:8b with other model tags like qwen3:4b if you prefer a sma
    
 ### **Step 2: Run The Interactive Chat**
 
-Now that the model is downloaded, you can run your interactive Python script.
+Now that the model is downloaded, you can run the interactive Python script.
 
 > docker-compose up --build client
 
@@ -80,7 +80,7 @@ This command will:
 
 1. **Build** the client Docker image (if it's changed).  
 2. **Start** the client container.  
-3. **Run** the *run_query.py* script and attach your terminal to it, starting an interactive chat session.
+3. **Run** the *run_query.py* script and attach the terminal to it, starting an interactive chat session.
 
 You will see a welcome message and a You: prompt.
 
@@ -94,7 +94,7 @@ You will see a welcome message and a You: prompt.
 
 **Stop all services:** 
 
-(If your chat client is running, you may need to press Ctrl+C first or run this in a new terminal)
+(If the chat client is running, you may need to press Ctrl+C first or run this in a new terminal)
 
 > docker-compose down
 
@@ -104,6 +104,6 @@ You will see a welcome message and a You: prompt.
 
 **Stop and remove the persistent model data:**
 
-(This will delete your downloaded models.)
+(This will delete the downloaded models.)
 
 > docker-compose down -v
