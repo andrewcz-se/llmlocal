@@ -5,7 +5,7 @@ This project uses Docker and Docker Compose to run a local Qwen3 LLM (via Ollama
 ## **Pre-requisites**
 
 - You must have Docker installed and running. This projects aim is a quick development test to use Docker containers and Docker compose to run and query an LLM locally. [Download Docker](https://www.docker.com/)
-- For this project you need an Nvidia GPU to use GPU processing for the LLM. Use the CPU folders if you do not have an Nvidia GPU and want to use CPU processing
+- For this project you need an Nvidia GPU and the Nvidia Toolkit installed to use GPU processing for the LLM.
 
 ## **Project Structure**
 
