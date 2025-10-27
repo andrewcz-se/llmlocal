@@ -2,11 +2,6 @@
 
 This project uses Docker and Docker Compose to run a local Qwen3 LLM (via Ollama) and query it with a separate Python script, also running in Docker.
 
-## **Pre-requisites**
-
-- You must have Docker installed and running. This projects aim is a quick development test to use Docker containers and Docker compose to run and query an LLM locally. [Download Docker](https://www.docker.com/)
-- For this project you need an Nvidia GPU and the Nvidia Toolkit installed to use GPU processing for the LLM.
-
 ## **Project Structure**
 
 .  
@@ -24,9 +19,25 @@ This project uses Docker and Docker Compose to run a local Qwen3 LLM (via Ollama
 
 By default, this project will run the LLM using your CPU. If you have an NVIDIA GPU, you can (and should) use it for a massive performance increase.
 
-**To enable GPU support:**
+**Enabling GPU Support (Host-Specific)**
 
-Install the NVIDIA Container Toolkit: You must first install this on your host machine (your computer, not the container). 
+Please follow the instructions for your operating system.
+
+**If you are using Docker Desktop (Windows):**
+
+The process is simple. You do not need to run any of the Linux commands.
+
+1. Check Prerequisites:
+
+	- NVIDIA Driver: Install the latest Game Ready or Studio Driver for your GPU from the NVIDIA website.
+	- WSL 2: Ensure WSL 2 is installed. (Run wsl --install in an Admin PowerShell if needed).
+	- Docker Desktop: Ensure it's configured to "Use the WSL 2 based engine" (this is the default). You can check this in Settings > General.
+
+2. Edit docker-compose.yml: This is the only step. Open the docker-compose.yml file and uncomment the deploy block under the ollama service.
+
+**If you are using a native Linux OS (e.g., Ubuntu):**
+
+You must install the NVIDIA Container Toolkit and configure the Docker daemon. Install the NVIDIA Container Toolkit: You must first install this on your host machine (your computer, not the container). 
 
 Official Instructions: [NVIDIA Container Toolkit Install Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
@@ -72,7 +83,7 @@ You can replace qwen3:8b with other model tags like qwen3:4b if you prefer a sma
    
 ### **Step 2: Run The Interactive Chat**
 
-Now that the model is downloaded, you can run the interactive Python script.
+Now that the model is downloaded, you can run your interactive Python script.
 
 > docker-compose up --build client
 
@@ -80,7 +91,7 @@ This command will:
 
 1. **Build** the client Docker image (if it's changed).  
 2. **Start** the client container.  
-3. **Run** the *run_query.py* script and attach the terminal to it, starting an interactive chat session.
+3. **Run** the *run_query.py* script and attach your terminal to it, starting an interactive chat session.
 
 You will see a welcome message and a You: prompt.
 
@@ -94,7 +105,7 @@ You will see a welcome message and a You: prompt.
 
 **Stop all services:** 
 
-(If the chat client is running, you may need to press Ctrl+C first or run this in a new terminal)
+(If your chat client is running, you may need to press Ctrl+C first or run this in a new terminal)
 
 > docker-compose down
 
@@ -104,6 +115,6 @@ You will see a welcome message and a You: prompt.
 
 **Stop and remove the persistent model data:**
 
-(This will delete the downloaded models.)
+(This will delete your downloaded models.)
 
 > docker-compose down -v
