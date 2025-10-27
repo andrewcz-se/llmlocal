@@ -1,0 +1,42 @@
+# This file defines the two services: the LLM server and your Python client.
+version: '3.8'
+
+services:
+  # Service 1: The LLM Server (Ollama)
+  ollama:
+    image: ollama/ollama
+    container_name: ollama_server
+    ports:
+      # Expose the API on your host machine (optional, but useful for debugging)
+      - "11434:11434"
+    volumes:
+      # This volume persists the downloaded models, so you don't
+      # have to re-download them every time you start the container.
+      - ollama_data:/root/.ollama
+    
+    # --- Optional: Uncomment for NVIDIA GPU Support ---
+    # Make sure you have the NVIDIA Container Toolkit installed on your host.
+    # See README.md for more info.
+    #
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all # Request all available GPUs
+              capabilities: [gpu]
+    # --- End of GPU Block ---
+
+  # Service 2: Your Python Client
+  client:
+    build: ./client
+    container_name: python_client
+    depends_on:
+      - ollama
+    stdin_open: true # Keep stdin open for user input
+    tty: true        # Allocate a pseudo-TTY
+
+# This volume stores the downloaded LLM models
+volumes:
+  ollama_data:
+
