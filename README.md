@@ -13,7 +13,7 @@ This project uses Docker and Docker Compose to run a local Qwen3 LLM (via Ollama
 
 * docker-compose.yml: Defines the Ollama LLM server and the Python client services.  
 * client/Dockerfile: The build recipe for your Python client.  
-* client/run_query.py: Your Python script that sends a question to the LLM.
+* client/run_query.py: The Python script that sends a question to the LLM.
 
 ## **Important: Note on GPU vs. CPU Usage**
 
@@ -79,7 +79,7 @@ While the server is running, execute the following command to download the qwen3
    
 You only need to do this once.
 
-You can replace qwen3:8b with other model tags like qwen3:4b if you prefer a smaller model.
+You can replace qwen3:8b with other model tags like qwen3:4b if you prefer a smaller model. You can use any model available to Ollama.
    
 ### **Step 2: Run The Interactive Chat**
 
